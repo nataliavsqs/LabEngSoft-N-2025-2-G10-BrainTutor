@@ -1,0 +1,446 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+/* Estilo para a logo */
+.logo {
+  width: 150px; /* Ajuste o tamanho conforme necessário */
+  height: auto; /* Mantém a proporção da imagem */
+  display: block; /* Impede que a imagem tenha margem ou comportamento estranho */
+  margin: 0 auto 20px; /* Centraliza a logo e adiciona espaço abaixo dela */
+}
+
+/* Estilos globais para o corpo da página */
+body {
+  font-family: "Poppins", sans-serif; /* Define a fonte Poppins para todo o texto */
+  font-size: 14px; /* Tamanho da fonte base */
+  background: #f2f2f2; /* Cor de fundo cinza claro */
+}
+
+/* Clearfix para limpar floats e evitar problemas de layout */
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  height: 0;
+}
+
+/* Estilos para o contêiner do formulário */
+.form_wrapper {
+  background: #fff; /* Fundo branco */
+  width: 400px; /* Largura fixa */
+  max-width: 100%; /* Responsivo: não ultrapassa 100% da largura do contêiner pai */
+  box-sizing: border-box; /* Inclui padding e borda no cálculo da largura */
+  padding: 25px; /* Espaçamento interno */
+  margin: 8% auto 0; /* Centraliza o formulário na página */
+  position: relative;
+  z-index: 1;
+  border-top: 5px solid #298FA6; /* Borda superior azul médio */
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  transform-origin: 50% 0%; /* Ponto de origem para animações */
+  transform: scale3d(1, 1, 1); /* Transformação inicial */
+  transition: none; /* Sem transição padrão */
+  -webkit-animation: expand 0.8s 0.6s ease-out forwards; /* Animação de expansão */
+  animation: expand 0.8s 0.6s ease-out forwards; /* Animação de expansão */
+  opacity: 0; /* Inicialmente invisível */
+}
+
+/* Título do formulário */
+.form_wrapper h2 {
+  font-size: 1.5em; /* Tamanho do título */
+  line-height: 1.5em; /* Espaçamento entre linhas */
+  margin: 0; /* Remove margens padrão */
+}
+
+/* Contêiner do título */
+.form_wrapper .title_container {
+  text-align: center; /* Centraliza o texto */
+  padding-bottom: 15px; /* Espaçamento inferior */
+}
+
+/* Subtítulo do formulário */
+.form_wrapper h3 {
+  font-size: 1.1em; /* Tamanho do subtítulo */
+  font-weight: normal; /* Peso da fonte normal */
+  line-height: 1.5em; /* Espaçamento entre linhas */
+  margin: 0; /* Remove margens padrão */
+}
+
+/* Estilos para labels */
+.form_wrapper label {
+  font-size: 12px; /* Tamanho da fonte menor */
+}
+
+/* Linhas do formulário */
+.form_wrapper .row {
+  margin: 10px -15px; /* Margem negativa para compensar o padding das colunas */
+}
+
+/* Colunas dentro das linhas */
+.form_wrapper .row > div {
+  padding: 0 15px; /* Espaçamento interno */
+  box-sizing: border-box; /* Inclui padding no cálculo da largura */
+}
+
+/* Colunas com metade da largura */
+.form_wrapper .col_half {
+  width: 50%; /* Largura de 50% */
+  float: left; /* Flutua à esquerda */
+}
+
+/* Campos de entrada */
+.form_wrapper .input_field {
+  position: relative; /* Posicionamento relativo para elementos internos */
+  margin-bottom: 15px; /* Espaçamento inferior */
+  -webkit-animation: bounce 0.6s ease-out; /* Animação de "bounce" */
+  animation: bounce 0.6s ease-out; /* Animação de "bounce" */
+}
+
+/* Ícones dentro dos campos de entrada */
+.form_wrapper .input_field > span {
+  position: absolute; /* Posicionamento absoluto */
+  top: 50%;
+  transform: translateY(-50%);
+  left: 10px;
+  color: #555;
+  height: 100%; /* Altura total do campo */
+  border-right: 1px solid #cccccc; /* Borda à direita */
+  text-align: center; /* Centraliza o ícone */
+  width: 30px; /* Largura fixa */
+}
+
+/* Estilos para ícones */
+.form_wrapper .input_field > span > i {
+  padding-top: 10px; /* Espaçamento superior */
+}
+
+/* Campos de texto, e-mail e senha */
+.form_wrapper input[type="text"],
+.form_wrapper input[type="email"],
+.form_wrapper input[type="password"] {
+  width: 100%; /* Largura total */
+  padding: 10px 10px 10px 40px; /* Espaçamento interno com espaço para o ícone */
+  height: 35px; /* Altura fixa */
+  border: 1px solid #cccccc; /* Borda cinza */
+  border-radius: 5px;
+  box-sizing: border-box; /* Inclui padding e borda no cálculo da largura */
+  outline: none; /* Remove o contorno padrão */
+  transition: all 0.3s ease-in-out; /* Transição suave */
+}
+
+/* Efeito hover para campos de entrada */
+.form_wrapper input[type="text"]:hover,
+.form_wrapper input[type="email"]:hover,
+.form_wrapper input[type="password"]:hover {
+  background: #fafafa; /* Fundo mais claro ao passar o mouse */
+}
+
+/* Efeito focus para campos de entrada */
+.form_wrapper input[type="text"]:focus,
+.form_wrapper input[type="email"]:focus,
+.form_wrapper input[type="password"]:focus {
+  box-shadow: 0 0 2px 1px rgba(0, 180, 255, 0.5); /* Sombra azul */
+  border: 1px solid #298FA6; /* Borda azul médio */
+  background: #fafafa; /* Fundo mais claro */
+}
+
+/* Botão de envio */
+.form_wrapper input[type="submit"] {
+  background: #021859; /* Nova cor de fundo para o botão */
+  height: 35px; /* Altura fixa */
+  line-height: 35px; /* Centraliza o texto verticalmente */
+  width: 100%; /* Largura total */
+  border: none; /* Remove a borda */
+  outline: none; /* Remove o contorno */
+  cursor: pointer; /* Cursor de ponteiro */
+  color: #fff; /* Texto branco */
+  font-size: 1.1em; /* Tamanho da fonte */
+  margin-bottom: 10px; /* Espaçamento inferior */
+  transition: all 0.3s ease-in-out; /* Transição suave */
+}
+
+/* Efeito hover para o botão de envio */
+.form_wrapper input[type="submit"]:hover {
+  background: #022d64; /* Tom mais escuro de azul para o hover */
+}
+
+/* Efeito focus para o botão de envio */
+.form_wrapper input[type="submit"]:focus {
+  background: #022d64; /* Tom mais escuro de azul para o focus */
+}
+
+/* Estilos para checkboxes e radios (escondidos visualmente) */
+.form_wrapper input[type="checkbox"],
+.form_wrapper input[type="radio"] {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+/* Estilos para a última coluna */
+.form_container .row .col_half.last {
+  border-left: 1px solid #cccccc; /* Borda à esquerda */
+}
+
+/* Estilos para checkboxes personalizados */
+.checkbox_option label {
+  margin-right: 1em; /* Espaçamento à direita */
+  position: relative; /* Posicionamento relativo */
+}
+
+/* Checkbox personalizado (antes) */
+.checkbox_option label:before {
+  content: "";
+  display: inline-block;
+  width: 0.5em;
+  height: 0.5em;
+  margin-right: 0.5em;
+  vertical-align: -2px;
+  border: 2px solid #cccccc;
+  padding: 0.12em;
+  background-color: transparent;
+  background-clip: content-box;
+  transition: all 0.2s ease;
+}
+
+/* Checkbox personalizado (depois) */
+.checkbox_option label:after {
+  border-right: 2px solid #0D0D0D; /* Cor preta */
+  border-top: 2px solid #0D0D0D; /* Cor preta */
+  content: "";
+  height: 20px;
+  left: 2px;
+  position: absolute;
+  top: 7px;
+  transform: scaleX(-1) rotate(135deg);
+  transform-origin: left top;
+  width: 7px;
+  display: none;
+}
+
+/* Efeito hover para checkboxes */
+.checkbox_option input:hover + label:before {
+  border-color: #0D0D0D; /* Borda preta */
+}
+
+/* Checkbox marcado */
+.checkbox_option input:checked + label:before {
+  background-color: #0D0D0D; /* Fundo preto */
+}
+
+/* Animação do checkbox marcado */
+.checkbox_option input:checked + label:after {
+  -webkit-animation: check 0.8s ease 0s running;
+  animation: check 0.8s ease 0s running;
+  display: block;
+  width: 7px;
+  height: 20px;
+  border-color: #0D0D0D;
+}
+
+/* Estilos para radios personalizados */
+.radio_option label {
+  margin-right: 1em; /* Espaçamento à direita */
+}
+
+/* Radio personalizado (antes) */
+.radio_option label:before {
+  content: "";
+  display: inline-block;
+  width: 0.5em;
+  height: 0.5em;
+  margin-right: 0.5em;
+  border-radius: 100%; /* Formato circular */
+  vertical-align: -3px;
+  border: 2px solid #cccccc;
+  padding: 0.15em;
+  background-color: transparent;
+  background-clip: content-box;
+  transition: all 0.2s ease;
+}
+
+/* Efeito hover para radios */
+.radio_option input:hover + label:before {
+  border-color: #0D0D0D; /* Borda preta */
+}
+
+/* Radio marcado */
+.radio_option input:checked + label:before {
+  background-color: #0D0D0D; /* Fundo preto */
+  border-color: #0D0D0D; /* Borda preta */
+}
+
+/* Estilos para select personalizado */
+.select_option {
+  position: relative; /* Posicionamento relativo */
+  width: 100%; /* Largura total */
+}
+
+/* Select personalizado */
+.select_option select {
+  display: inline-block;
+  width: 100%;
+  height: 35px;
+  padding: 0px 15px;
+  cursor: pointer;
+  color: #7b7b7b;
+  border: 1px solid #cccccc;
+  border-radius: 0;
+  background: #fff;
+  appearance: none; /* Remove o estilo padrão do select */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  transition: all 0.2s ease;
+}
+
+/* Remove a seta padrão do select no IE */
+.select_option select::-ms-expand {
+  display: none;
+}
+
+/* Efeito hover e focus para select */
+.select_option select:hover,
+.select_option select:focus {
+  color: #0D0D0D; /* Texto preto */
+  background: #fafafa; /* Fundo mais claro */
+  border-color: #0D0D0D; /* Borda preta */
+  outline: none; /* Remove o contorno */
+}
+
+/* Seta personalizada do select */
+.select_arrow {
+  position: absolute;
+  top: calc(50% - 4px);
+  right: 15px;
+  width: 0;
+  height: 0;
+  pointer-events: none; /* Impede interação */
+  border-width: 8px 5px 0 5px;
+  border-style: solid;
+  border-color: #7b7b7b transparent transparent transparent;
+}
+
+/* Efeito hover e focus para a seta do select */
+.select_option select:hover + .select_arrow,
+.select_option select:focus + .select_arrow {
+  border-top-color: #0D0D0D; /* Seta preta */
+}
+
+/* Créditos no rodapé */
+.credit {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 15px;
+  color: #298FA6; /* Texto azul médio */
+}
+
+/* Links no rodapé */
+.credit a {
+  color: #4BBF94; /* Texto verde claro */
+}
+
+/* Links extras */
+.extraLinks {
+  display: flex;
+  justify-content: space-between; /* Espaçamento entre links */
+}
+
+/* Estilos para links personalizados */
+.customLink {
+  text-decoration: none; /* Remove sublinhado */
+  font-size: small; /* Tamanho da fonte menor */
+  color: #333; /* Texto cinza escuro */
+  transition: all 0.4s ease; /* Transição suave */
+}
+
+/* Efeito hover para links personalizados */
+.customLink:hover {
+  color: #7b7b7b; /* Texto cinza */
+}
+
+/* Animação de "check" */
+@-webkit-keyframes check {
+  0% {
+    height: 0;
+    width: 0;
+  }
+  25% {
+    height: 0;
+    width: 7px;
+  }
+  50% {
+    height: 20px;
+    width: 7px;
+  }
+  75% {
+    height: 20px;
+    width: 7px;
+  }
+  100% {
+    height: 20px;
+    width: 7px;
+    border-color: #0D0D0D;
+  }
+}
+
+/* Animação de expansão */
+@-webkit-keyframes expand {
+  0% {
+    -webkit-transform: scale3d(1, 0, 1);
+    opacity: 0;
+  }
+  25% {
+    -webkit-transform: scale3d(1, 1.2, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1, 0.85, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1, 1.05, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+    opacity: 1;
+  }
+}
+
+/* Animação de "bounce" */
+@-webkit-keyframes bounce {
+  0% {
+    transform: translate3d(0, -25px, 0);
+    opacity: 0;
+  }
+  25% {
+    transform: translate3d(0, 10px, 0);
+  }
+  50% {
+    transform: translate3d(0, -6px, 0);
+  }
+  75% {
+    transform: translate3d(0, 2px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+/* Estilos responsivos para telas menores que 600px */
+@media (max-width: 600px) {
+  .form_wrapper .col_half {
+    width: 100%; /* Colunas ocupam 100% da largura */
+    float: none; /* Remove o float */
+  }
+  .bottom_row .col_half {
+    width: 50%; /* Colunas ocupam 50% da largura */
+    float: left; /* Flutua à esquerda */
+  }
+  .form_container .row .col_half.last {
+    border-left: none; /* Remove a borda à esquerda */
+  }
+}

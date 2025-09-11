@@ -1,0 +1,1 @@
+module.exports = 'sua_chave_secreta_aqui';

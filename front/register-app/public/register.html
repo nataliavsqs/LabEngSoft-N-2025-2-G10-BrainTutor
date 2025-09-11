@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .error-message {
+            color: red;
+            font-size: 14px;
+            display: none;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form_wrapper">
+        <div class="form_container">
+            <div class="row clearfix">
+                <div>
+                    <form>
+                        <!-- Nome -->
+                        <div class="input_field">
+                            <span><i class="fa fa-user" aria-hidden="true"></i></span>
+                            <input type="text" name="nome" placeholder="Nome" required>
+                        </div>
+
+                        <!-- RG -->
+                        <div class="input_field">
+                            <span><i class="fa fa-id-card" aria-hidden="true"></i></span>
+                            <input type="text" name="rg" placeholder="RG" required>
+                        </div>
+
+                        <!-- Telefone -->
+                        <div class="input_field">
+                            <span><i class="fa fa-phone" aria-hidden="true"></i></span>
+                            <input type="tel" name="telefone" placeholder="Telefone" required pattern="[0-9]{10,11}" title="Digite um número de telefone válido com 10 ou 11 dígitos">
+                        </div>
+
+                        <!-- Email -->
+                        <div class="input_field">
+                            <span><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                            <input type="email" name="email" placeholder="E-mail" required>
+                        </div>
+
+                        <!-- Endereço -->
+                        <div class="input_field">
+                            <span><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+                            <input type="text" name="endereco" placeholder="Endereço" required>
+                        </div>
+
+                        <!-- Tipo de Usuário -->
+                        <div class="input_field select_option">
+                            <select name="tipo_usuario" required>
+                                <option value="" disabled selected>Selecione o tipo de usuário</option>
+                                <option value="professor">Professor</option>
+                                <option value="aluno">Aluno</option>
+                            </select>
+                        </div>
+
+                        <!-- Senha -->
+                        <div class="input_field">
+                            <span><i class="fa fa-lock" aria-hidden="true"></i></span>
+                            <input type="password" id="password" placeholder="Senha" required oninput="validatePassword()">
+                        </div>
+                        <p id="password-error" class="error-message">A senha deve ter entre 6 e 8 caracteres e conter pelo menos uma letra e um número.</p>
+
+                        <!-- Confirmar Senha -->
+                        <div class="input_field">
+                            <span><i class="fa fa-lock" aria-hidden="true"></i></span>
+                            <input type="password" id="confirm-password" placeholder="Confirme sua senha" required oninput="validatePassword()">
+                        </div>
+                        <p id="confirm-password-error" class="error-message">As senhas não coincidem.</p>
+
+                        <!-- Checkbox de Termos -->
+                        <div class="input_field checkbox_option">
+                            <input type="checkbox" id="cb1" required>
+                            <label for="cb1">Eu concordo com os termos e condições</label>
+                        </div>
+
+                        <!-- Botão de Registro -->
+                        <input class="button" type="button" value="Registrar" id="register-btn">
+
+                        <!-- Link para Login -->
+                        <div class="extraLinks">
+                            <a class="customLink" href="login.html">Já tem uma conta? Faça login</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function validatePassword() {
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirm-password").value;
+            const errorMsg = document.getElementById("password-error");
+            const confirmErrorMsg = document.getElementById("confirm-password-error");
+
+            // Regex: de 6 a 8 caracteres, pelo menos uma letra e um número
+            const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,8}$/;
+
+            let isValid = true;
+
+            if (!passwordRegex.test(password)) {
+                errorMsg.style.display = "block";
+                isValid = false;
+            } else {
+                errorMsg.style.display = "none";
+            }
+
+            if (confirmPassword !== "" && confirmPassword !== password) {
+                confirmErrorMsg.style.display = "block";
+                isValid = false;
+            } else {
+                confirmErrorMsg.style.display = "none";
+            }
+        }
+
+        const registerBtn = document.getElementById("register-btn");
+        console.log("Botão de registro:", registerBtn);
+
+        registerBtn.addEventListener("click", async () => {
+            // Captura os dados do formulário
+            const nome = document.querySelector('input[name="nome"]').value;
+            const rg = document.querySelector('input[name="rg"]').value;
+            const telefone = document.querySelector('input[name="telefone"]').value;
+            const email = document.querySelector('input[name="email"]').value;
+            const endereco = document.querySelector('input[name="endereco"]').value;
+            const tipo_usuario = document.querySelector('select[name="tipo_usuario"]').value;
+            const senha = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirm-password").value;
+
+            // Valida se todos os campos estão preenchidos
+            let errorMessage = "";
+
+            if (!nome) {
+                errorMessage = "Por favor, preencha o campo Nome.\n";
+            }
+            if (!rg) {
+                errorMessage += "Por favor, preencha o campo RG.\n";
+            }
+            if (!telefone) {
+                errorMessage += "Por favor, preencha o campo Telefone.\n";
+            }
+            if (!email) {
+                errorMessage += "Por favor, preencha o campo E-mail.\n";
+            }
+            if (!endereco) {
+                errorMessage += "Por favor, preencha o campo Endereço.\n";
+            }
+            if (!tipo_usuario) {
+                errorMessage += "Por favor, selecione o Tipo de Usuário.\n";
+            }
+            if (!senha) {
+                errorMessage += "Por favor, preencha o campo Senha.\n";
+            }
+            if (!confirmPassword) {
+                errorMessage += "Por favor, preencha o campo Confirmar Senha.\n";
+            }
+
+            // Valida a senha
+            const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,8}$/;
+            if (!passwordRegex.test(senha)) {
+                errorMessage += "A senha deve ter entre 6 e 8 caracteres e conter pelo menos uma letra e um número.\n";
+            }
+
+            // Valida se as senhas coincidem
+            if (senha !== confirmPassword) {
+                errorMessage += "As senhas não coincidem.\n";
+            }
+
+            if (errorMessage !== "") {
+                alert(errorMessage);
+                return;
+            }
+
+            // Cria o JSON com os dados do formulário
+            const jsonData = {
+                nome,
+                rg,
+                telefone,
+                email,
+                endereco,
+                tipo_usuario,
+                senha,
+            };
+
+            console.log("JSON a ser enviado:", jsonData);
+
+            try {
+                // Envia o JSON para a API
+                const response = await fetch("http://localhost:8000/cadastro", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(jsonData),
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    alert("Cadastro realizado com sucesso!");
+                    console.log("Resposta da API:", result);
+                    window.location.reload(); // Recarrega a página após cadastro
+                } else {
+                    const errorData = await response.json();
+                    alert("Erro ao realizar o cadastro. Tente novamente.");
+                    console.error("Erro retornado pela API:", errorData);
+                }
+            } catch (error) {
+                alert("Erro ao conectar com a API.");
+                console.error("Erro na requisição:", error);
+            }
+        });
+    </script>
+</body>
+</html>

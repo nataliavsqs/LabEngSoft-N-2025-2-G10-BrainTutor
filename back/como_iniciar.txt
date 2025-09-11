@@ -1,0 +1,9 @@
+# How to Start the Development Server
+
+This command starts the development server for the project. Ensure you have installed all dependencies by running `npm install` beforehand.
+
+## Command:
+npm run dev
+
+## Expected Output:
+The server will start, and you should see a message indicating the server is running, along with the URL (e.g., http://localhost:3000) where you can access the application.

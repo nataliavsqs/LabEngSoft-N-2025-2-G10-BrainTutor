@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar Senha</title> <!-- Recuperar Senha -->
+    <!-- Incluindo Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Link para o arquivo CSS personalizado -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Container principal do formulário -->
+    <div class="form_wrapper">
+        <div class="form_container">
+            <!-- Título do formulário -->
+            <div class="title_container">
+                <!-- Logo do site -->
+                <img src=""C:\Users\giova\OneDrive\Documentos\form_register_login_forgotpassword\brain_tutor_logo.PNG"" alt="Logo" class="logo">
+                <h2>Recuperar Senha</h2> <!-- Recuperar Senha -->
+            </div>
+
+            <!-- Linha para organização do layout -->
+            <div class="row clearfix">
+                <div>
+                    <!-- Formulário de recuperação de senha -->
+                    <form>
+                        <!-- Campo de e-mail -->
+                        <div class="input_field">
+                            <span><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                            <input type="email" name="email" placeholder="E-mail" required> 
+                        </div>
+
+                        <!-- RG -->
+                        <div class="input_field">
+                            <span><i class="fa fa-id-card" aria-hidden="true"></i></span>
+                            <input type="text" name="rg" placeholder="RG" required>
+                        </div>
+
+                        <!-- Botão de envio -->
+                        <input class="button" type="submit" value="Enviar Código"> <!-- Texto do botão traduzido -->
+
+                        <!-- Links extras -->
+                        <div class="extraLinks">
+                            <a class="customLink" href="login.html">Criar uma nova conta</a> <!-- Texto traduzido -->
+                            <a class="customLink" href="login.html">Login</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Créditos -->
+    <p class="credit">Brain Tutor por <a target="_blank" href="#">Giovana Miyuki & Natália Vasques</a></p> <!-- Texto traduzido -->
+
+    <!-- Modal para exibir mensagem e nova senha -->
+    <div id="modalRecuperacao" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:9999;">
+        <div style="background:#fff; padding:30px; border-radius:8px; min-width:300px; text-align:center;">
+            <h3 id="modalMensagem"></h3>
+            <p id="modalNovaSenha" style="font-weight:bold;"></p>
+            <button onclick="document.getElementById('modalRecuperacao').style.display='none'">Fechar</button>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.querySelector('form');
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const email = form.querySelector('input[name="email"]').value;
+            const rg = form.querySelector('input[name="rg"]').value;
+            try {
+                const response = await fetch('http://localhost:8000/recuperar-senha', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, rg })
+                });
+                const data = await response.json();
+                // Exibe modal com mensagem e nova senha
+                document.getElementById('modalMensagem').textContent = data.mensagem || 'Recuperação realizada!';
+                document.getElementById('modalNovaSenha').textContent = data.novaSenha ? 'Nova senha: ' + data.novaSenha : '';
+                document.getElementById('modalRecuperacao').style.display = 'flex';
+            } catch (error) {
+                document.getElementById('modalMensagem').textContent = 'Erro ao conectar com o servidor.';
+                document.getElementById('modalNovaSenha').textContent = '';
+                document.getElementById('modalRecuperacao').style.display = 'flex';
+            }
+        });
+    });
+    </script>
+    <!-- Incluindo o arquivo JavaScript para manipulação do campo de seleção de país -->
+    <script src="country.js"></script>
+</body>
+</html>
