@@ -16,6 +16,15 @@ services:
     depends_on:
       - db
 
+  front:
+    build:
+      context: ../front  # ajuste o caminho se necessário
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"  # ajuste a porta conforme seu front
+    depends_on:
+      - app
+
   db:
     image: postgres:15
     container_name: postgres-container
